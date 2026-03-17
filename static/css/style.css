@@ -688,10 +688,10 @@ a { color: var(--accent-blue); text-decoration: none; }
 .chart-container {
     position: relative;
     width: 100%;
-    min-height: 300px;
+    height: 300px;
 }
 
-.chart-container-sm { min-height: 250px; }
+.chart-container-sm { height: 250px; }
 
 .chart-select {
     background: rgba(26, 31, 54, 0.8);
@@ -825,6 +825,14 @@ a { color: var(--accent-blue); text-decoration: none; }
     background: rgba(255, 255, 255, 0.02);
     border-radius: var(--radius-sm);
     padding: 0.75rem;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dist-chart-wrapper canvas {
+    flex: 1;
+    min-height: 0;
 }
 
 .dist-chart-wrapper h4 {
@@ -833,6 +841,7 @@ a { color: var(--accent-blue); text-decoration: none; }
     text-align: center;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
+    flex-shrink: 0;
     letter-spacing: 0.5px;
 }
 

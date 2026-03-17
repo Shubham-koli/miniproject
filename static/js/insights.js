@@ -134,7 +134,6 @@ function renderDistributions() {
         wrapper.appendChild(title);
 
         var canvasEl = document.createElement('canvas');
-        canvasEl.height = 150;
         wrapper.appendChild(canvasEl);
         grid.appendChild(wrapper);
 
