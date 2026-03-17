@@ -35,7 +35,32 @@ A web-based application that predicts the risk of diabetes using medical paramet
 | imbalanced-learn | 0.11.0 | SMOTE for class balancing |
 | joblib | 1.3.2 | Model serialization |
 
-## How to Run
+## Quick Start (Recommended)
+
+### Windows
+
+```
+git clone https://github.com/Shubham-koli/miniproject.git
+cd miniproject
+run.bat
+```
+
+Double-click `run.bat` or run it from Command Prompt. It will automatically:
+- Create a virtual environment
+- Install all dependencies
+- Train models (first run only)
+- Start the server and open your browser
+
+### macOS / Linux
+
+```bash
+git clone https://github.com/Shubham-koli/miniproject.git
+cd miniproject
+chmod +x run.sh
+./run.sh
+```
+
+## Manual Setup
 
 ### 1. Clone the repository
 
