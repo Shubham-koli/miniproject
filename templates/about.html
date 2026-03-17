@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1><i class="fas fa-info-circle"></i> About This Project</h1>
+    <p>Diabetes Prediction System using Machine Learning</p>
+</section>
+
+<section class="about-section">
+    <div class="container">
+        <!-- Objective -->
+        <div class="glass-card animate-fadeInUp">
+            <h2><i class="fas fa-bullseye"></i> Objective</h2>
+            <p>Diabetes mellitus is one of the most common chronic diseases worldwide, affecting over 422 million people. Early detection is crucial to prevent serious complications such as heart disease, kidney failure, and vision loss.</p>
+            <p>This system leverages machine learning to predict the risk of diabetes based on medical parameters. By comparing multiple algorithms and using an ensemble approach, it provides accurate and transparent predictions to support early screening.</p>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="glass-card animate-fadeInUp">
+            <h2><i class="fas fa-layer-group"></i> Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <i class="fab fa-python"></i>
+                    <h4>Python 3</h4>
+                    <p>Core programming language for ML pipeline and backend</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-flask"></i>
+                    <h4>Flask</h4>
+                    <p>Lightweight web framework serving the application</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-brain"></i>
+                    <h4>scikit-learn</h4>
+                    <p>Machine learning library for model training and evaluation</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-rocket"></i>
+                    <h4>XGBoost</h4>
+                    <p>Gradient boosting framework for high-performance prediction</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h4>Chart.js</h4>
+                    <p>Interactive charting library for data visualization</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-html5"></i>
+                    <h4>HTML5 / CSS3</h4>
+                    <p>Modern frontend with glassmorphism design and animations</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Methodology -->
+        <div class="glass-card animate-fadeInUp">
+            <h2><i class="fas fa-project-diagram"></i> Methodology</h2>
+            <div class="pipeline">
+                <div class="pipeline-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Data Collection</h4>
+                        <p>Pima Indians Diabetes Dataset (768 samples, 8 features)</p>
+                    </div>
+                </div>
+                <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="pipeline-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Preprocessing</h4>
+                        <p>Missing value imputation, feature scaling with StandardScaler</p>
+                    </div>
+                </div>
+                <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="pipeline-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>SMOTE</h4>
+                        <p>Synthetic oversampling to handle class imbalance</p>
+                    </div>
+                </div>
+                <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="pipeline-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Model Training</h4>
+                        <p>5 algorithms: LR, RF, SVM, KNN, XGBoost</p>
+                    </div>
+                </div>
+                <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="pipeline-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Evaluation</h4>
+                        <p>Accuracy, Precision, Recall, F1, AUC-ROC comparison</p>
+                    </div>
+                </div>
+                <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="pipeline-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>Deployment</h4>
+                        <p>Flask web app with weighted ensemble prediction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dataset -->
+        <div class="glass-card animate-fadeInUp">
+            <h2><i class="fas fa-database"></i> Dataset</h2>
+            <p>The <strong>Pima Indians Diabetes Database</strong> originates from the National Institute of Diabetes and Digestive and Kidney Diseases. It contains diagnostic measurements from 768 female patients of Pima Indian heritage, aged 21 and above.</p>
+            <div class="table-wrapper">
+                <table class="metrics-table">
+                    <thead>
+                        <tr><th>Feature</th><th>Description</th><th>Range</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Pregnancies</td><td>Number of pregnancies</td><td>0 - 17</td></tr>
+                        <tr><td>Glucose</td><td>Plasma glucose concentration (mg/dL)</td><td>0 - 199</td></tr>
+                        <tr><td>BloodPressure</td><td>Diastolic blood pressure (mm Hg)</td><td>0 - 122</td></tr>
+                        <tr><td>SkinThickness</td><td>Triceps skin fold thickness (mm)</td><td>0 - 99</td></tr>
+                        <tr><td>Insulin</td><td>2-Hour serum insulin (mu U/ml)</td><td>0 - 846</td></tr>
+                        <tr><td>BMI</td><td>Body mass index (kg/m&sup2;)</td><td>0 - 67.1</td></tr>
+                        <tr><td>DiabetesPedigreeFunction</td><td>Genetic predisposition score</td><td>0.078 - 2.42</td></tr>
+                        <tr><td>Age</td><td>Age in years</td><td>21 - 81</td></tr>
+                        <tr><td>Outcome</td><td>Diabetes diagnosis (0 = No, 1 = Yes)</td><td>0 / 1</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Models -->
+        <div class="glass-card animate-fadeInUp">
+            <h2><i class="fas fa-robot"></i> Models Used</h2>
+            <div class="models-grid">
+                <div class="model-explain-card">
+                    <h4><span class="model-dot" style="background: #667eea;"></span> Logistic Regression</h4>
+                    <p>A statistical model that uses a logistic function to model binary outcomes. It estimates the probability of diabetes by fitting a linear decision boundary to the input features.</p>
+                </div>
+                <div class="model-explain-card">
+                    <h4><span class="model-dot" style="background: #43e97b;"></span> Random Forest</h4>
+                    <p>An ensemble of decision trees that votes on the final prediction. Each tree is trained on a random subset of features and data, reducing overfitting and improving accuracy.</p>
+                </div>
+                <div class="model-explain-card">
+                    <h4><span class="model-dot" style="background: #f5576c;"></span> Support Vector Machine</h4>
+                    <p>Finds the optimal hyperplane that maximally separates diabetic and non-diabetic cases in high-dimensional feature space using a radial basis function kernel.</p>
+                </div>
+                <div class="model-explain-card">
+                    <h4><span class="model-dot" style="background: #fda085;"></span> K-Nearest Neighbors</h4>
+                    <p>Classifies new cases based on the majority vote of the 11 nearest training samples, weighted by distance. Closer neighbors have more influence on the prediction.</p>
+                </div>
+                <div class="model-explain-card">
+                    <h4><span class="model-dot" style="background: #4facfe;"></span> XGBoost</h4>
+                    <p>An optimized gradient boosting algorithm that builds trees sequentially, where each new tree corrects errors from the previous ones. Known for high performance in structured data tasks.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Future Scope -->
+        <div class="glass-card animate-fadeInUp">
+            <h2><i class="fas fa-lightbulb"></i> Future Scope</h2>
+            <ul class="future-list">
+                <li><i class="fas fa-check"></i> Deep learning models (Neural Networks) for improved accuracy</li>
+                <li><i class="fas fa-check"></i> Integration with wearable health devices for real-time monitoring</li>
+                <li><i class="fas fa-check"></i> Mobile application for wider accessibility</li>
+                <li><i class="fas fa-check"></i> Expanded dataset with additional features (HbA1c, cholesterol)</li>
+                <li><i class="fas fa-check"></i> SHAP-based model explainability for individual predictions</li>
+                <li><i class="fas fa-check"></i> Multi-disease prediction (hypertension, heart disease)</li>
+            </ul>
+        </div>
+
+        <!-- References -->
+        <div class="glass-card animate-fadeInUp">
+            <h2><i class="fas fa-book"></i> References</h2>
+            <ul class="references-list">
+                <li>Pima Indians Diabetes Dataset - Kaggle (UCI Machine Learning Repository)</li>
+                <li>scikit-learn: Machine Learning in Python, Pedregosa et al., JMLR 12, 2011</li>
+                <li>XGBoost: A Scalable Tree Boosting System, Chen & Guestrin, KDD 2016</li>
+                <li>SMOTE: Synthetic Minority Over-sampling Technique, Chawla et al., JAIR 2002</li>
+                <li>Flask Web Development Framework Documentation</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block title %}Predict{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-icon">
+            <i class="fas fa-dna"></i>
+        </div>
+        <h1>Diabetes Risk Prediction</h1>
+        <p class="hero-subtitle">Advanced multi-model ensemble powered by Machine Learning</p>
+    </div>
+</section>
+
+<section class="predict-section">
+    <div class="container">
+        <div class="glass-card form-card animate-fadeInUp">
+            <div class="form-header">
+                <h2><i class="fas fa-user-md"></i> Enter Health Parameters</h2>
+                <div class="quick-fill">
+                    <button class="btn btn-outline btn-sm" onclick="fillSample('healthy')">
+                        <i class="fas fa-check-circle"></i> Sample Healthy
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="fillSample('atRisk')">
+                        <i class="fas fa-exclamation-circle"></i> Sample At-Risk
+                    </button>
+                </div>
+            </div>
+
+            <form id="predictForm" class="predict-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="Pregnancies">
+                            Pregnancies
+                            <span class="info-tip" data-tip="Number of times pregnant (0-17)"><i class="fas fa-info-circle"></i></span>
+                        </label>
+                        <input type="number" id="Pregnancies" name="Pregnancies" placeholder="e.g., 2" min="0" max="20" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Glucose">
+                            Glucose (mg/dL)
+                            <span class="info-tip" data-tip="Plasma glucose concentration. Normal: 70-140"><i class="fas fa-info-circle"></i></span>
+                        </label>
+                        <input type="number" id="Glucose" name="Glucose" placeholder="e.g., 120" min="0" max="300" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="BloodPressure">
+                            Blood Pressure (mm Hg)
+                            <span class="info-tip" data-tip="Diastolic blood pressure. Normal: 60-80"><i class="fas fa-info-circle"></i></span>
+                        </label>
+                        <input type="number" id="BloodPressure" name="BloodPressure" placeholder="e.g., 72" min="0" max="200" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="SkinThickness">
+                            Skin Thickness (mm)
+                            <span class="info-tip" data-tip="Triceps skin fold thickness. Normal: 10-50"><i class="fas fa-info-circle"></i></span>
+                        </label>
+                        <input type="number" id="SkinThickness" name="SkinThickness" placeholder="e.g., 30" min="0" max="100" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Insulin">
+                            Insulin (mu U/ml)
+                            <span class="info-tip" data-tip="2-Hour serum insulin. Normal: 16-166"><i class="fas fa-info-circle"></i></span>
+                        </label>
+                        <input type="number" id="Insulin" name="Insulin" placeholder="e.g., 80" min="0" max="900" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="BMI">
+                            BMI (kg/m&sup2;)
+                            <span class="info-tip" data-tip="Body Mass Index. Normal: 18.5-24.9"><i class="fas fa-info-circle"></i></span>
+                        </label>
+                        <input type="number" id="BMI" name="BMI" placeholder="e.g., 25.0" min="0" max="70" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="DiabetesPedigreeFunction">
+                            Diabetes Pedigree
+                            <span class="info-tip" data-tip="Genetic predisposition score (0.0-2.5)"><i class="fas fa-info-circle"></i></span>
+                        </label>
+                        <input type="number" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction" placeholder="e.g., 0.5" min="0" max="3" step="0.001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Age">
+                            Age (years)
+                            <span class="info-tip" data-tip="Age in years (21-81)"><i class="fas fa-info-circle"></i></span>
+                        </label>
+                        <input type="number" id="Age" name="Age" placeholder="e.g., 35" min="1" max="120" step="1" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-lg" id="predictBtn">
+                        <i class="fas fa-brain"></i> Predict Risk
+                    </button>
+                    <button type="button" class="btn btn-ghost btn-lg" onclick="clearForm()">
+                        <i class="fas fa-redo"></i> Clear
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="results-section" style="display: none;">
+            <!-- Risk Gauge -->
+            <div class="glass-card gauge-card animate-fadeInUp">
+                <h3>Risk Assessment</h3>
+                <div class="gauge-wrapper">
+                    <canvas id="riskGauge" width="400" height="250"></canvas>
+                </div>
+                <div id="riskBadge" class="risk-badge"></div>
+            </div>
+
+            <!-- Model Votes -->
+            <div class="model-votes animate-fadeInUp">
+                <h3><i class="fas fa-robot"></i> Model Predictions</h3>
+                <div class="votes-grid" id="votesGrid"></div>
+            </div>
+
+            <!-- Ensemble Bar -->
+            <div class="glass-card animate-fadeInUp">
+                <h3><i class="fas fa-layer-group"></i> Weighted Ensemble Confidence</h3>
+                <div class="ensemble-bar-wrapper">
+                    <div class="ensemble-bar">
+                        <div class="ensemble-fill" id="ensembleFill"></div>
+                    </div>
+                    <span class="ensemble-value" id="ensembleValue"></span>
+                </div>
+            </div>
+
+            <!-- Dominant Factors -->
+            <div class="glass-card animate-fadeInUp">
+                <h3><i class="fas fa-search-plus"></i> Key Risk Factors</h3>
+                <div class="factors-grid" id="factorsGrid"></div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="glass-card recommendations-card animate-fadeInUp">
+                <h3><i class="fas fa-clipboard-list"></i> Health Recommendations</h3>
+                <ul class="recommendations-list" id="recommendationsList"></ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1><i class="fas fa-chart-line"></i> Model Performance Dashboard</h1>
+    <p>Compare machine learning models across multiple evaluation metrics</p>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <!-- Metric Cards -->
+        <div class="metric-cards" id="metricCards"></div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+            <div class="glass-card chart-card animate-fadeInUp">
+                <h3><i class="fas fa-chart-bar"></i> Model Comparison</h3>
+                <div class="chart-container">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-card chart-card animate-fadeInUp">
+                <h3><i class="fas fa-project-diagram"></i> ROC Curves</h3>
+                <div class="chart-container">
+                    <canvas id="rocChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-card chart-card animate-fadeInUp">
+                <h3><i class="fas fa-spider"></i> Radar Comparison</h3>
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-card chart-card animate-fadeInUp">
+                <h3>
+                    <i class="fas fa-sort-amount-down"></i> Feature Importance
+                    <select id="fiModelSelect" class="chart-select">
+                        <option value="random_forest">Random Forest</option>
+                        <option value="xgboost_model">XGBoost</option>
+                    </select>
+                </h3>
+                <div class="chart-container">
+                    <canvas id="featureChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confusion Matrix -->
+        <div class="glass-card animate-fadeInUp">
+            <h3>
+                <i class="fas fa-th"></i> Confusion Matrix
+                <select id="cmModelSelect" class="chart-select">
+                    <option value="logistic_regression">Logistic Regression</option>
+                    <option value="random_forest">Random Forest</option>
+                    <option value="svm">SVM</option>
+                    <option value="knn">KNN</option>
+                    <option value="xgboost_model">XGBoost</option>
+                </select>
+            </h3>
+            <div class="confusion-matrix" id="confusionMatrix"></div>
+        </div>
+
+        <!-- Full Metrics Table -->
+        <div class="glass-card animate-fadeInUp">
+            <h3><i class="fas fa-table"></i> Complete Metrics</h3>
+            <div class="table-wrapper">
+                <table class="metrics-table" id="metricsTable">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Accuracy</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1 Score</th>
+                            <th>AUC-ROC</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

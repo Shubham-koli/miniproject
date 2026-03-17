@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DiabetesAI{% endblock %} | Diabetes Prediction System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>DiabetesAI</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/" class="{% if request.path == '/' %}active{% endif %}"><i class="fas fa-stethoscope"></i> Predict</a></li>
+                <li><a href="/dashboard" class="{% if request.path == '/dashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="/insights" class="{% if request.path == '/insights' %}active{% endif %}"><i class="fas fa-microscope"></i> Insights</a></li>
+                <li><a href="/about" class="{% if request.path == '/about' %}active{% endif %}"><i class="fas fa-info-circle"></i> About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p><i class="fas fa-exclamation-triangle"></i> This tool is for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment.</p>
+            <p class="footer-credit">Built with <i class="fas fa-heart"></i> using Flask, scikit-learn & Chart.js</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('show');
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Data Insights{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1><i class="fas fa-microscope"></i> Data Insights & Exploration</h1>
+    <p>Exploring the Pima Indians Diabetes Dataset</p>
+</section>
+
+<section class="insights-section">
+    <div class="container">
+        <!-- Overview Cards -->
+        <div class="overview-cards" id="overviewCards">
+            <div class="glass-card stat-card animate-fadeInUp stagger-item">
+                <div class="stat-icon"><i class="fas fa-database"></i></div>
+                <div class="stat-value" id="totalSamples">0</div>
+                <div class="stat-label">Total Samples</div>
+            </div>
+            <div class="glass-card stat-card animate-fadeInUp stagger-item">
+                <div class="stat-icon"><i class="fas fa-columns"></i></div>
+                <div class="stat-value" id="totalFeatures">8</div>
+                <div class="stat-label">Features</div>
+            </div>
+            <div class="glass-card stat-card animate-fadeInUp stagger-item">
+                <div class="stat-icon" style="color: var(--risk-high);"><i class="fas fa-user-injured"></i></div>
+                <div class="stat-value" id="diabeticCount">0</div>
+                <div class="stat-label">Diabetic Cases</div>
+            </div>
+            <div class="glass-card stat-card animate-fadeInUp stagger-item">
+                <div class="stat-icon" style="color: var(--risk-low);"><i class="fas fa-user-check"></i></div>
+                <div class="stat-value" id="nonDiabeticCount">0</div>
+                <div class="stat-label">Non-Diabetic Cases</div>
+            </div>
+        </div>
+
+        <!-- Class Distribution & Data Quality -->
+        <div class="charts-grid charts-grid-2">
+            <div class="glass-card chart-card animate-fadeInUp">
+                <h3><i class="fas fa-chart-pie"></i> Class Distribution</h3>
+                <div class="chart-container chart-container-sm">
+                    <canvas id="classChart"></canvas>
+                </div>
+            </div>
+            <div class="glass-card chart-card animate-fadeInUp">
+                <h3><i class="fas fa-exclamation-triangle"></i> Missing Data (Zeros)</h3>
+                <div class="chart-container chart-container-sm">
+                    <canvas id="zeroChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Distributions -->
+        <div class="glass-card animate-fadeInUp">
+            <h3><i class="fas fa-chart-area"></i> Feature Distributions by Outcome</h3>
+            <div class="distribution-grid" id="distributionGrid"></div>
+        </div>
+
+        <!-- Correlation Heatmap -->
+        <div class="glass-card animate-fadeInUp">
+            <h3><i class="fas fa-fire"></i> Correlation Heatmap</h3>
+            <div class="heatmap-wrapper">
+                <canvas id="heatmapCanvas" width="600" height="600"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/insights.js') }}"></script>
+{% endblock %}
